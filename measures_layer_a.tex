@@ -1,0 +1,136 @@
+\documentclass[10pt,a4paper,twoside]{article}
+
+% Paquetes básicos
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english, spanish,es-noquoting]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows}
+
+% Personalización
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% Configuración para código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% Estilo para notas y derivaciones
+\newcommand{\note}[1]{\textcolor{blue}{\textbf{Nota:} #1}}
+\newcommand{\insight}[1]{\textcolor{purple}{\textbf{Insight:} #1}}
+
+% Comandos para referencias a GitHub
+\newcommand{\github}[2]{\href{https://github.com/YourUsername/#1}{#2}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{\textbf{Systematic Explorations of Measures}}
+\author{Juan S. Rojas}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+This document focuses on organize the trials of measures behing the simplest dynamical layer until now and HFM model. 
+Each trial will be given by an equation of the measure, assumptions, result, Limitations and why we failed.
+
+\vspace{1em}
+\textbf{Global Objective:} 
+Estimate the self-awareness in a machine that learns, 
+it must be a layer that returns a value about 
+\textit{how much the machine knows about itself}.
+
+
+\section*{Framework}
+\subsection*{1. Hierarchical Feature Model (HFM)}
+
+The HFM defines a probability distribution over binary feature vectors $s \in \{0,1\}^n$ based on their hierarchical resolution $m_s$, interpreted as the index of the most complex feature present in $s$. The energy function $\mathcal{H}(s)$ penalizes high-resolution configurations, with a cost scaled by the coupling parameter $g$.
+
+
+\[
+p(s) = \frac{1}{Z(g)} \, e^{-g \, \mathcal{H}(s)},
+\qquad 
+\mathcal{H}(s) = \max(m_s - 1, 0), \quad m_s = \max\{i \mid s_i = 1\}
+\]
+
+
+This model satisfies the \textit{Principle of Maximal Relevance}: Lower-resolution states are favored under high coupling ($g \gg g_c$), while lower $g$ allows exploration of richer, high-resolution feature sets. The critical coupling $g_c = \log 2$ separates phases.
+
+
+\subsection*{2. Layer Dynamics Model}
+
+To interpret how hierarchical states $s_t$ are processed, we define a layered system where each layer $j$ integrates its input over time. Each $w^j$ is a fixed weights $w^j$ are drawn from $\mathcal{N}(0, 1)$ independently, and $\sigma(\cdot)$ is a nonlinear activation function (e.g., sigmoid, perceptron).
+
+\[
+a^j_t = (1 - \epsilon) a^j_{t-1} + \epsilon \cdot \sigma\left( \sum_{i} w^j_i \cdot s_i(t) \right)
+\]
+
+The update rule for each layer is a leaky integrator (exponential moving average), where the parameter $\epsilon \in [0,1]$ controls memory:
+\begin{itemize}
+    \item $\epsilon \approx 1$: fast adaptation, little memory.
+    \item $\epsilon \ll 1$: slow dynamics, strong temporal smoothing.
+\end{itemize}
+
+The combination of the HFM (as the data source) and the Layer Model (as the observer) provides a setup to investigate the relationship between internal feature organization and emergent learning behavior.
+
+\subsection*{3. Measure 1: Projection onto Principal Component}
+
+This measure evaluates how strongly the system's state at time $a_t$ aligns with its \textit{dominant mode of variation across layers}.
+
+\[
+f(t) = \left|v_1 \cdot a_t\right|
+\]
+
+\begin{itemize}
+    \item $a_t = (a^1_t, ..., a^J_t)$ is the vector of activations across all $J$ layers at time $t$
+    \item $v_1$ is the first principal component (leading eigenvector of the covariance matrix of $\{a_t\}$)
+    \item $f(t)$ quantifies the projection of the system onto its collective direction of maximal variance
+\end{itemize}
+
+\textbf{Interpretation:}  
+A high value of $f(t)$ indicates that the system's activation state is well-aligned with the dominant internal structure. Low values suggest misalignment or dispersion. This measure captures the degree of organization along the principal axis of collective behavior.
+
+
+
+
+\subsection*{4. Measure 2: Static dispersion metric (variance among activations)}
+
+\subsection*{5. Measure 3: Bin collisions}
+
+\subsection*{6. Measure 4: Heterogeneity in activation patterns}
+
+\subsection*{7. Measure 5: Product of (3) and (4) as a hybrid score}
+
+
+\end{document} 
