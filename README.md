@@ -9,6 +9,11 @@ The project explores the relationship between internal feature organization and 
 1. **Hierarchical Ferromagnetic Model (HFM)**: A statistical physics model that exhibits phase transitions
 2. **Layer Dynamics Model**: A system where each layer integrates its input over time with memory parameter ε
 
+## Documents
+
+- `Systematic_Explorations_of_Measures.pdf`: Detailed documentation of measures and theoretical framework
+- `HFM_model.ipynb`: Implementation and analysis notebook
+
 ## Features
 
 - Implementation of HFM with configurable parameters
