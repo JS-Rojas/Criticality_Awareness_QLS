@@ -1,4 +1,4 @@
-# Critical Awareness QLS
+# Criticality Awareness QLS
 
 This repository contains implementations and analysis of the Hierarchical Ferromagnetic Model (HFM) and Layer Dynamics Model for studying critical phenomena in neural systems.
 
@@ -20,8 +20,8 @@ The project explores the relationship between internal feature organization and 
 
 ```bash
 # Clone the repository
-git clone https://github.com/JS-Rojas/Critical_Awareness_QLS.git
-cd Critical_Awareness_QLS
+git clone https://github.com/JS-Rojas/Criticality_Awareness_QLS.git
+cd Criticality_Awareness_QLS
 
 # Create a virtual environment (optional but recommended)
 python -m venv venv
