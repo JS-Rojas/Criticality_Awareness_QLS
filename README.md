@@ -1,6 +1,6 @@
 # Criticality Awareness QLS
 
-This repository contains implementations and analysis of the Hierarchical Ferromagnetic Model (HFM) and Layer Dynamics Model for studying critical phenomena in neural systems.
+This repository contains implementations and analysis of the Hierarchical Feature Model (HFM) and Layer Dynamics Model for studying critical phenomena in neural systems.
 
 ## Overview
 
