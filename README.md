@@ -6,7 +6,7 @@ This repository contains implementations and analysis of the Hierarchical Featur
 
 The project explores the relationship between internal feature organization and emergent learning behavior through:
 
-1. **Hierarchical Ferromagnetic Model (HFM)**: A statistical physics model that exhibits phase transitions
+1. **Hierarchical Feature Model (HFM)**: A statistical physics model that exhibits phase transitions
 2. **Layer Dynamics Model**: A system where each layer integrates its input over time with memory parameter ε
 
 ## Documents
